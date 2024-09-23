@@ -23,6 +23,10 @@ public class GameRules {
         if (n == 's')
             if (!map.isWall(pacman.getX()+1, pacman.getY()))
                 pacman.moveDown();
+
+        // Exit the game if the user presses 'q'
+        if (n == 'q')
+            System.exit(0);
     }
 
     public void progressFrame() {

@@ -31,12 +31,14 @@ public class WindowsRenderer {
     public void render(Graphics g) {
         for (int i = 0; i < map.getHeight(); i++) {
             for (int j = 0; j < map.getWidth(); j++) {
+
+                // not sure why +25 is needed here, but the wall image is displayed incorrectly with it
                 if (map.isWall(i, j)) {
-                    g.drawImage(wallImage, j * 32, i * 32 + 25, null);
+                    g.drawImage(wallImage, j * 32, i * 32, null);
                 } else if (pacman.getX() == i && pacman.getY() == j) {
-                    g.drawImage(pacmanImage, j * 32, i * 32 + 25, null);
+                    g.drawImage(pacmanImage, j * 32, i * 32, null);
                 } else if (ghost.getX() == i && ghost.getY() == j) {
-                    g.drawImage(ghostImage, j * 32, i * 32 + 25, null);
+                    g.drawImage(ghostImage, j * 32, i * 32, null);
                 }
             }
         }

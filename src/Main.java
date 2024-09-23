@@ -37,50 +37,63 @@ public class Main {
             if (n == 10)
                 continue;
 
-
-            if (n == 'a')
-                if (map[pacmanX][pacmanY-1] != 1)
-                    pacmanY--;
-            if (n == 'd')
-                if (map[pacmanX][pacmanY+1] != 1)
-                    pacmanY++;
-            if (n == 'w')
-                if (map[pacmanX-1][pacmanY] != 1)
-                    pacmanX--;
-            if (n == 's')
-                if (map[pacmanX+1][pacmanY] != 1)
-                    pacmanX++;
+            processUserInput(n);
 
             if (map[ghostX +ghostDx][ghostY +ghostDy] !=1) {
-                ghostX = ghostX +ghostDx;
-                ghostY = ghostY +ghostDy;
+                moveGhost();
             } else {
-                int tmp = ghostDx;
-                ghostDx = -1*ghostDy;
-                ghostDy = tmp;
+                changeDirection();
             }
 
             if (pacmanX == ghostX && pacmanY ==ghostY)
                 System.exit(0);
 
-            for (int i=0; i<map.length; i++) {
-                for (int j=0; j<map[i].length; j++)  {
-                    if (map[i][j] == 1)
-                        System.out.print("#");
-                    if (i == pacmanX && j == pacmanY)
-                        System.out.print("C");
-                    if (i == ghostX && j == ghostY)
-                        System.out.print("G");
-
-                    else if (map[i][j] == 0)
-                        System.out.print(" ");
-
-
-                }
-                System.out.println();
-            }
+            renderMap();
         }
 
 
+    }
+
+    private static void renderMap() {
+        for (int i=0; i<map.length; i++) {
+            for (int j=0; j<map[i].length; j++)  {
+                if (map[i][j] == 1)
+                    System.out.print("#");
+                if (i == pacmanX && j == pacmanY)
+                    System.out.print("C");
+                if (i == ghostX && j == ghostY)
+                    System.out.print("G");
+
+                else if (map[i][j] == 0)
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void changeDirection() {
+        int tmp = ghostDx;
+        ghostDx = -1*ghostDy;
+        ghostDy = tmp;
+    }
+
+    private static void moveGhost() {
+        ghostX = ghostX +ghostDx;
+        ghostY = ghostY +ghostDy;
+    }
+
+    private static void processUserInput(int n) {
+        if (n == 'a')
+            if (map[pacmanX][pacmanY-1] != 1)
+                pacmanY--;
+        if (n == 'd')
+            if (map[pacmanX][pacmanY+1] != 1)
+                pacmanY++;
+        if (n == 'w')
+            if (map[pacmanX-1][pacmanY] != 1)
+                pacmanX--;
+        if (n == 's')
+            if (map[pacmanX+1][pacmanY] != 1)
+                pacmanX++;
     }
 }

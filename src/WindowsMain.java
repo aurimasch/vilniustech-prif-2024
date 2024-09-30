@@ -36,9 +36,10 @@ public class WindowsMain extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                char userInput = e.getKeyChar();
+                char userInputChar = e.getKeyChar();
+                int userInputKey = e.getKeyCode();
 
-                gameRules.processUserInput(userInput);
+                gameRules.processUserInput(userInputChar, userInputKey);
 
                 repaint();
             }

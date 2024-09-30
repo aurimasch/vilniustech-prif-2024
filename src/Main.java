@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 public class Main {
@@ -22,7 +24,7 @@ public class Main {
             if (n == 10)
                 continue;
 
-            gameRules.processUserInput(n);
+            gameRules.processUserInput(n, 0);
 
             gameRules.progressFrame();
 
